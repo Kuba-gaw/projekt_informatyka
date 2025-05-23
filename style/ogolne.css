@@ -3,6 +3,11 @@ body{
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: minmax(0, 1fr);
+    margin: 0;
+}
+h1{
+    margin-left: 10px;
+    font-size: 50px;
 }
 @media screen and (min-width: 768px) {
     header {
@@ -65,6 +70,7 @@ body{
     }
     p{
         color: #fff;
+        margin-left: 10px;
     }
     #menu-bar li {
         margin: 0px 0px 6px 0px;
