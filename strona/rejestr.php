@@ -2,20 +2,18 @@
 require_once "connect.php";
 session_start();
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $email=$_POST["email"];
     $login=$_POST["login"];
     $haslo=$_POST["pass"];
-    $query= "SELECT * FROM uzytkownicy";
+    $query= "INSERT INTO uzytkownicy (nazwa, email, haslo) VALUES ('$login', '$email', '$haslo')";
     $result= mysqli_query($connection, $query);
     if($result){
-        while($row=mysqli_fetch_assoc($result)){
-            if(($login==$row["nazwa"] || $login==$row["email"])&&$haslo==$row["haslo"]){echo "zalogowano";}
-        }
-        mysqli_free_result($result);
+        echo "Zarejestrowano konto!";
     }else{
         echo "Błąd zapytania: " . mysqli_error($connection);
     }
     mysqli_close($connection);
-    header("Location: strona_glowna.php");
+    header("Location: zaloguj.php");
 }
 ?>
 <!DOCTYPE html>
@@ -48,13 +46,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         </section>
     </header>
     <form method="post">
-        <label for="login"><h1>Nazwa użytkownika lub e-mail:</h1></label>
+        <label for="email"><h1>E-mail:</h1></label>
+        <input type="text" class="input login" name="email" id="email" required style="height: 70px; width: 721px;">
+        <label for="login"><h1>Nazwa użytkownika:</h1></label>
         <input type="text" class="input login" name="login" id="login" required style="height: 70px; width: 721px;">
         <label for="pass"><h1>Hasło:</h1></label>
         <input type="password" class="input login" name="pass" id="pass" required style="height: 70px; width: 721px;"><br><br><br>
         <button type="submit" value="Zaloguj" id="submit" class="button" style="height: 40px; width: 106px;">Zaloguj</button>
     </form>
-    <button type="submit" class="button" style="height: 40px; width: 106px;"><a href="rejestr.php">Nie masz konta? Stwórz je za darmo!</a></button>
     <footer>
         <section class="container">
             <p>Dane kontaktowe:</p>

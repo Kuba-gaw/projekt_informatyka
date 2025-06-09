@@ -10,7 +10,7 @@
 <body>
     <header>
         <section class="container">
-            <img src="../zdjecia/logo.png" id="logo">
+            <img src="../zdjecia/logo.png" id="logo" style="padding: 30px;">
             <h1>Tech Haven</h1>
             <nav>
                 <ul id="menu-bar">
