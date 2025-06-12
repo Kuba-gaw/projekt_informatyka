@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $_SESSION["zalogowane"]="N";
+    header("Location: " . $_SERVER["PHP_SELF"]);
+    exit();
+}
+?>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +31,12 @@
                         </ul>
                     </li>
                     <li><a href="#">Kontakt</a></li>
-                    <li><a href="zaloguj.php">Zaloguj</a></li>
+                    <?php
+                    if($_SESSION["zalogowane"]!="Y"):?>
+                        <li><a href="zaloguj.php">Zaloguj</a></li>
+                    <?php else:?>
+                        <li><form method="post"><button type="submit" id="wyloguj">Wyloguj</button></form></li>
+                    <?php endif;?>
                 </ul>
             </nav>
         </section>

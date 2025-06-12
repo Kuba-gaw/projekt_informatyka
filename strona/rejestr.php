@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style/ogolne.css">
     <link rel="stylesheet" type="text/css" href="../style/form.css">
-    <title>Logowanie</title>
+    <title>rejestracja</title>
 </head>
 <body>
     <header>

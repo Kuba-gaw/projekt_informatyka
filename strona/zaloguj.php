@@ -8,14 +8,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $result= mysqli_query($connection, $query);
     if($result){
         while($row=mysqli_fetch_assoc($result)){
-            if(($login==$row["nazwa"] || $login==$row["email"])&&$haslo==$row["haslo"]){echo "zalogowano";}
+            if(($login==$row["nazwa"] || $login==$row["email"])&&$haslo==$row["haslo"]){
+                $_SESSION["zalogowane"]="Y";
+            }
         }
         mysqli_free_result($result);
     }else{
         echo "Błąd zapytania: " . mysqli_error($connection);
     }
     mysqli_close($connection);
-    header("Location: strona_glowna.php");
+    header("Location: strona_głowna.php");
 }
 ?>
 <!DOCTYPE html>
@@ -54,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <input type="password" class="input login" name="pass" id="pass" required style="height: 70px; width: 721px;"><br><br><br>
         <button type="submit" value="Zaloguj" id="submit" class="button" style="height: 40px; width: 106px;">Zaloguj</button>
     </form>
-    <button type="submit" class="button" style="height: 40px; width: 106px;"><a href="rejestr.php">Nie masz konta? Stwórz je za darmo!</a></button>
+    <a href="rejestr.php"><button type="submit" class="button" style="height: 60px; width: 200px;">Nie masz konta? Stwórz je za darmo!</button></a><br><br>
     <footer>
         <section class="container">
             <p>Dane kontaktowe:</p>
